@@ -7,10 +7,9 @@ fun applyWarpTransition(
     outputVideo: String,
     transitionTime: Int
 ) {
-    // Ensure FFmpeg is installed and available in the system PATH
     val ffmpegCommand = listOf(
         "ffmpeg",
-        "-i", inputVideo,                // Input video
+        "-i", inputVideo,
         "-filter_complex",
         "[0:v]split[v1][v2];" +
                 "[v1]setpts=PTS-STARTPTS[v1a];" +
@@ -43,17 +42,14 @@ fun applyWarpTransition(
 }
 
 fun main() {
-    // Input parameters
-    val inputVideo = "input.mp4" // Replace with your input video file
-    val outputVideo = "output.mp4" // Replace with your desired output file name
-    val transitionTime = 2 // Warp transition time in seconds
+    val inputVideo = "input.mp4"
+    val outputVideo = "output.mp4"
+    val transitionTime = 2
 
-    // Ensure input video file exists
     if (!File(inputVideo).exists()) {
         println("Error: Input video file '$inputVideo' does not exist.")
         return
     }
 
-    // Apply the warp transition
     applyWarpTransition(inputVideo, outputVideo, transitionTime)
 }
